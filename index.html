@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Kit du Freelance Francophone — Smith Pro</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --orange: #F4721E;
+    --orange-light: #FEE9D8;
+    --dark: #0F0E17;
+    --dark2: #1A1A2E;
+    --white: #FAFAF8;
+    --gray: #6B7280;
+    --cream: #FFF8F3;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--dark2);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 24px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; left: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(244,114,30,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; right: -80px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(244,114,30,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .badge {
+    display: inline-block;
+    background: rgba(244,114,30,0.15);
+    border: 1px solid rgba(244,114,30,0.4);
+    color: var(--orange);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 8px 20px;
+    border-radius: 100px;
+    margin-bottom: 32px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.1;
+    max-width: 780px;
+    margin-bottom: 24px;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+
+  .hero h1 span {
+    color: var(--orange);
+    font-style: italic;
+  }
+
+  .hero-sub {
+    font-size: clamp(16px, 2.5vw, 20px);
+    color: rgba(250,250,248,0.65);
+    max-width: 540px;
+    line-height: 1.6;
+    margin-bottom: 48px;
+    font-weight: 300;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .hero-cta {
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--orange);
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    padding: 18px 44px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 8px 32px rgba(244,114,30,0.35);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(244,114,30,0.45);
+  }
+
+  .hero-price-note {
+    margin-top: 16px;
+    font-size: 14px;
+    color: rgba(250,250,248,0.4);
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: rgba(250,250,248,0.3);
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    animation: bounce 2s infinite;
+  }
+
+  .scroll-hint::after {
+    content: '';
+    width: 1px;
+    height: 40px;
+    background: rgba(244,114,30,0.5);
+  }
+
+  /* ── PROBLEM ── */
+  .section { padding: 80px 24px; }
+  .container { max-width: 720px; margin: 0 auto; }
+  .container-wide { max-width: 960px; margin: 0 auto; }
+
+  .problem {
+    background: var(--cream);
+    border-left: 4px solid var(--orange);
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 20px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    color: var(--dark2);
+  }
+
+  .problem-list {
+    list-style: none;
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .problem-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #374151;
+  }
+
+  .problem-list li::before {
+    content: '✗';
+    color: #EF4444;
+    font-weight: 700;
+    font-size: 18px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ── SOLUTION ── */
+  .solution-intro {
+    font-size: clamp(17px, 2.5vw, 21px);
+    line-height: 1.7;
+    color: #374151;
+    font-weight: 300;
+  }
+
+  .solution-intro strong {
+    color: var(--dark2);
+    font-weight: 600;
+  }
+
+  .highlight-box {
+    background: var(--dark2);
+    border-radius: 8px;
+    padding: 32px 36px;
+    margin-top: 36px;
+  }
+
+  .highlight-box p {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 3vw, 28px);
+    color: var(--white);
+    line-height: 1.4;
+    font-style: italic;
+  }
+
+  .highlight-box p span { color: var(--orange); }
+
+  /* ── WHAT'S INSIDE ── */
+  .inside { background: var(--dark2); }
+  .inside .section-label { color: var(--orange); }
+  .inside .section-title { color: var(--white); }
+
+  .kit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  .kit-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    padding: 32px 28px;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .kit-card:hover {
+    border-color: rgba(244,114,30,0.5);
+    transform: translateY(-4px);
+  }
+
+  .kit-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: rgba(244,114,30,0.2);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .kit-card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+
+  .kit-card p {
+    font-size: 14px;
+    color: rgba(250,250,248,0.55);
+    line-height: 1.6;
+  }
+
+  .kit-tag {
+    display: inline-block;
+    background: rgba(244,114,30,0.15);
+    border: 1px solid rgba(244,114,30,0.3);
+    color: var(--orange);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 100px;
+    margin-bottom: 16px;
+  }
+
+  /* ── FOR WHO ── */
+  .for-who-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  @media (max-width: 600px) {
+    .for-who-grid { grid-template-columns: 1fr; }
+  }
+
+  .for-card {
+    border-radius: 8px;
+    padding: 28px 24px;
+  }
+
+  .for-card.yes {
+    background: #F0FDF4;
+    border: 1px solid #86EFAC;
+  }
+
+  .for-card.no {
+    background: #FEF2F2;
+    border: 1px solid #FCA5A5;
+  }
+
+  .for-card h4 {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .for-card.yes h4 { color: #16A34A; }
+  .for-card.no h4 { color: #DC2626; }
+
+  .for-card ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+  .for-card ul li {
+    font-size: 14px;
+    line-height: 1.5;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .for-card.yes ul li::before { content: '✓'; color: #16A34A; font-weight: 700; flex-shrink: 0; }
+  .for-card.no ul li::before { content: '✗'; color: #DC2626; font-weight: 700; flex-shrink: 0; }
+
+  /* ── PRICING ── */
+  .pricing { background: var(--cream); }
+
+  .price-card {
+    background: var(--dark2);
+    border-radius: 12px;
+    padding: 52px 48px;
+    text-align: center;
+    max-width: 500px;
+    margin: 48px auto 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .price-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--orange);
+  }
+
+  .price-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 20px;
+  }
+
+  .price-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    color: var(--white);
+    margin-bottom: 32px;
+    line-height: 1.3;
+  }
+
+  .price-items {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .price-items li {
+    color: rgba(250,250,248,0.75);
+    font-size: 15px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .price-items li::before {
+    content: '✓';
+    color: var(--orange);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .price-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+    margin-bottom: 32px;
+  }
+
+  .price-amount {
+    margin-bottom: 8px;
+  }
+
+  .price-amount .amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .price-amount .currency {
+    font-size: 20px;
+    color: var(--orange);
+    font-weight: 600;
+    vertical-align: super;
+  }
+
+  .price-note {
+    font-size: 13px;
+    color: rgba(250,250,248,0.35);
+    margin-bottom: 32px;
+  }
+
+  .btn-price {
+    display: block;
+    background: var(--orange);
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 18px 32px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 8px 24px rgba(244,114,30,0.3);
+    margin-bottom: 14px;
+  }
+
+  .btn-price:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(244,114,30,0.4);
+  }
+
+  .guarantee {
+    font-size: 12px;
+    color: rgba(250,250,248,0.3);
+  }
+
+  /* ── AUTHOR ── */
+  .author-block {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+    margin-top: 40px;
+    padding: 36px;
+    background: var(--cream);
+    border-radius: 8px;
+    border-left: 4px solid var(--orange);
+  }
+
+  @media (max-width: 600px) {
+    .author-block { flex-direction: column; }
+  }
+
+  .author-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: var(--dark2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--orange);
+    flex-shrink: 0;
+  }
+
+  .author-name {
+    font-weight: 600;
+    font-size: 17px;
+    color: var(--dark2);
+    margin-bottom: 4px;
+  }
+
+  .author-role {
+    font-size: 13px;
+    color: var(--orange);
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+
+  .author-bio {
+    font-size: 14px;
+    color: #4B5563;
+    line-height: 1.7;
+  }
+
+  /* ── FAQ ── */
+  .faq-list {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid #E5E7EB;
+  }
+
+  .faq-q {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 20px 0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--dark2);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .faq-q .arrow {
+    color: var(--orange);
+    font-size: 20px;
+    transition: transform 0.3s;
+    flex-shrink: 0;
+  }
+
+  .faq-a {
+    font-size: 15px;
+    color: #4B5563;
+    line-height: 1.7;
+    padding-bottom: 20px;
+    display: none;
+  }
+
+  .faq-item.open .faq-a { display: block; }
+  .faq-item.open .arrow { transform: rotate(45deg); }
+
+  /* ── FINAL CTA ── */
+  .final-cta {
+    background: var(--dark2);
+    text-align: center;
+    padding: 100px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .final-cta::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(244,114,30,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .final-cta h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 5vw, 52px);
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .final-cta h2 em { color: var(--orange); font-style: italic; }
+
+  .final-cta p {
+    font-size: 17px;
+    color: rgba(250,250,248,0.5);
+    margin-bottom: 40px;
+    font-weight: 300;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    padding: 32px 24px;
+    text-align: center;
+  }
+
+  footer p {
+    font-size: 13px;
+    color: rgba(250,250,248,0.2);
+  }
+
+  footer span { color: var(--orange); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-8px); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── STICKY CTA BAR ── */
+  .sticky-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: var(--dark2);
+    border-top: 1px solid rgba(244,114,30,0.3);
+    padding: 14px 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    z-index: 100;
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+  }
+
+  .sticky-bar.show { transform: translateY(0); }
+
+  .sticky-bar p {
+    color: rgba(250,250,248,0.7);
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .sticky-bar p strong { color: var(--white); }
+
+  .btn-sticky {
+    display: inline-block;
+    background: var(--orange);
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 12px 28px;
+    border-radius: 4px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: opacity 0.2s;
+  }
+
+  .btn-sticky:hover { opacity: 0.9; }
+
+  @media (max-width: 480px) {
+    .sticky-bar p { display: none; }
+    .price-card { padding: 36px 24px; }
+    .author-block { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- STICKY BAR -->
+<div class="sticky-bar" id="stickyBar">
+  <p><strong>Kit du Freelance Francophone</strong> — 4 900 FCFA seulement</p>
+  <a href="#pricing" class="btn-sticky">Je veux le kit →</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="badge">Produit Digital · Accès immédiat</div>
+  <h1>Tu as une bonne offre.<br>Mais personne ne <span>l'achète.</span></h1>
+  <p class="hero-sub">Ce kit te donne les mots exacts pour attirer des clients, remplir ton agenda et vendre — même si tu pars de zéro.</p>
+  <div class="hero-cta">
+    <a href="#pricing" class="btn-primary">Obtenir le kit maintenant →</a>
+  </div>
+  <p class="hero-price-note">4 900 FCFA · Téléchargement immédiat</p>
+  <div class="scroll-hint">Découvrir</div>
+</section>
+
+<!-- PROBLEM -->
+<section class="section problem">
+  <div class="container reveal">
+    <p class="section-label">Le vrai problème</p>
+    <h2 class="section-title">Tu travailles dur. Mais tes clients ne viennent pas.</h2>
+    <p style="font-size:17px;line-height:1.7;color:#374151;font-weight:300;">
+      Tu as les compétences. Tu as l'ambition. Mais chaque jour qui passe sans client, c'est de l'argent que tu laisses sur la table.
+    </p>
+    <ul class="problem-list">
+      <li>Tu envoies des messages de prospection et personne ne répond</li>
+      <li>Tu publies sur LinkedIn mais tes posts ne convertissent pas</li>
+      <li>Tu ne sais pas comment formuler ton offre pour qu'elle soit irrésistible</li>
+      <li>Tu regardes d'autres entrepreneurs signer des clients — et tu te demandes ce qu'ils font différemment</li>
+    </ul>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section class="section">
+  <div class="container reveal">
+    <p class="section-label">La solution</p>
+    <h2 class="section-title">La différence, c'est comment tu écris.</h2>
+    <p class="solution-intro">
+      Les entrepreneurs qui signent le plus de clients ne sont pas forcément les meilleurs dans leur domaine. Ils savent juste <strong>utiliser les bons mots, au bon moment, de la bonne façon.</strong>
+    </p>
+    <div class="highlight-box">
+      <p>"Une seule phrase bien écrite peut valoir <span>500 000 FCFA.</span> Ce kit te donne les phrases qui marchent."</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S INSIDE -->
+<section class="section inside">
+  <div class="container-wide reveal">
+    <p class="section-label">Ce qu'il y a dedans</p>
+    <h2 class="section-title">Le Kit du Freelance Francophone</h2>
+    <p style="font-size:16px;color:rgba(250,250,248,0.55);max-width:540px;line-height:1.7;font-weight:300;">
+      Un PDF de 10 pages. Pas de théorie. Que des outils que tu copies, adaptes et utilises dès aujourd'hui.
+    </p>
+    <div class="kit-grid">
+      <div class="kit-card">
+        <span class="kit-tag">Section 01</span>
+        <div class="kit-number">30</div>
+        <h3>Accroches Irrésistibles</h3>
+        <p>5 catégories : curiosité, douleur, résultat, contre-intuitif, urgence. Copie-colle pour tes posts LinkedIn, emails et stories.</p>
+      </div>
+      <div class="kit-card">
+        <span class="kit-tag">Section 02</span>
+        <div class="kit-number">10</div>
+        <h3>Templates d'Emails de Prospection</h3>
+        <p>Premier contact, relance, recommandation, après événement, closing... Chaque situation est couverte.</p>
+      </div>
+      <div class="kit-card">
+        <span class="kit-tag">Section 03</span>
+        <div class="kit-number">2</div>
+        <h3>Étapes LinkedIn Clés</h3>
+        <p>Comment optimiser ton profil pour attirer des clients et quel contenu publier pour convertir tes abonnés en acheteurs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOR WHO -->
+<section class="section">
+  <div class="container reveal">
+    <p class="section-label">Pour qui ?</p>
+    <h2 class="section-title">Ce kit est fait pour toi si...</h2>
+    <div class="for-who-grid">
+      <div class="for-card yes">
+        <h4>✓ C'est pour toi</h4>
+        <ul>
+          <li>Tu es entrepreneur, freelance ou créateur de contenu francophone</li>
+          <li>Tu veux attirer des clients sans courir après eux</li>
+          <li>Tu cherches des outils concrets à utiliser maintenant</li>
+          <li>Tu veux professionnaliser ta communication</li>
+        </ul>
+      </div>
+      <div class="for-card no">
+        <h4>✗ Pas pour toi</h4>
+        <ul>
+          <li>Tu cherches une formation complète de copywriting</li>
+          <li>Tu veux juste de la théorie et des concepts</li>
+          <li>Tu n'es pas prêt à passer à l'action</li>
+          <li>Tu veux des résultats sans aucun effort</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUTHOR -->
+<section class="section" style="background:var(--white);padding-top:0;">
+  <div class="container reveal">
+    <p class="section-label">Qui suis-je ?</p>
+    <h2 class="section-title">Smith Pro</h2>
+    <div class="author-block">
+      <div class="author-avatar">S</div>
+      <div>
+        <p class="author-name">Smith</p>
+        <p class="author-role">Copywriter & Entrepreneur · Lomé, Togo</p>
+        <p class="author-bio">
+          Entrepreneur francophone basé en Afrique de l'Ouest, j'ai construit mes compétences en copywriting et marketing pour aider les entrepreneurs comme toi à mieux communiquer et vendre. Ce kit, c'est l'essentiel de ce que j'utilise au quotidien — condensé en un seul document actionnable.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section pricing" id="pricing">
+  <div class="container reveal">
+    <p class="section-label" style="text-align:center;">Accès immédiat</p>
+    <h2 class="section-title" style="text-align:center;">Une seule offre. Simple.</h2>
+    <div class="price-card">
+      <p class="price-label">Kit complet</p>
+      <h3 class="price-title">Le Kit du Freelance Francophone</h3>
+      <ul class="price-items">
+        <li>30 accroches calibrées entrepreneurs africains</li>
+        <li>10 templates d'emails de prospection</li>
+        <li>Guide LinkedIn : profil + contenu</li>
+        <li>Accès immédiat après paiement</li>
+        <li>Format PDF — lisible sur tous les appareils</li>
+      </ul>
+      <div class="price-divider"></div>
+      <div class="price-amount">
+        <span class="currency">FCFA</span>
+        <span class="amount">4 900</span>
+      </div>
+      <p class="price-note">Paiement unique · Pas d'abonnement</p>
+      <a href="#" class="btn-price">Oui, je veux le kit →</a>
+      <p class="guarantee">📦 Téléchargement immédiat après paiement</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" style="background:var(--white);">
+  <div class="container reveal">
+    <p class="section-label">Questions fréquentes</p>
+    <h2 class="section-title">Tu te poses des questions ?</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q">Comment vais-je recevoir le kit ? <span class="arrow">+</span></button>
+        <p class="faq-a">Dès ton paiement confirmé, tu reçois un lien de téléchargement immédiat. Tu peux accéder au PDF depuis ton téléphone, tablette ou ordinateur.</p>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Est-ce que ça marche si je débute ? <span class="arrow">+</span></button>
+        <p class="faq-a">Absolument. Ce kit est justement conçu pour les entrepreneurs qui veulent des outils concrets sans avoir besoin d'une formation complète. Tu copies, tu adaptes, tu envoies.</p>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Quels moyens de paiement sont acceptés ? <span class="arrow">+</span></button>
+        <p class="faq-a">Le paiement se fait via Chariow qui accepte Mobile Money (MTN, Moov, Orange), carte bancaire et d'autres moyens adaptés au marché africain.</p>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Est-ce que les templates sont adaptés à mon secteur ? <span class="arrow">+</span></button>
+        <p class="faq-a">Les templates sont conçus pour être personnalisables à n'importe quel secteur. Les zones entre [crochets] t'indiquent exactement ce que tu dois adapter.</p>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Est-ce que je peux partager le kit ? <span class="arrow">+</span></button>
+        <p class="faq-a">Le kit est à usage personnel uniquement. Si tu veux le partager avec quelqu'un, il peut l'acheter directement — à 4 900 FCFA, c'est accessible à tout le monde.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="container reveal">
+    <h2>Le marché francophone africain<br>est <em>encore peu compétitif.</em><br>Pas pour longtemps.</h2>
+    <p>Ceux qui maîtrisent la persuasion aujourd'hui domineront demain.</p>
+    <a href="#pricing" class="btn-primary">Obtenir le kit — 4 900 FCFA →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2024 <span>Smith Pro</span> · Tous droits réservés · Lomé, Togo</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+
+  // Sticky bar
+  const sticky = document.getElementById('stickyBar');
+  window.addEventListener('scroll', () => {
+    sticky.classList.toggle('show', window.scrollY > 600);
+  });
+
+  // FAQ
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+</script>
+</body>
+</html>
